@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"A2DSW/models/services"
 	"html/template"
 	"net/http"
 )
@@ -8,6 +9,6 @@ import (
 var templates = template.Must(template.ParseGlob("templates/*.html"))
 
 func Index(w http.ResponseWriter, r *http.Request) {
-
-	templates.ExecuteTemplate(w, "Index", nil)
+	taskAll := services.FindAll()
+	templates.ExecuteTemplate(w, "Index", taskAll)
 }
