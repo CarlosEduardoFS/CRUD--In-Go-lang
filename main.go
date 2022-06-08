@@ -8,6 +8,13 @@ import (
 )
 
 func main() {
+	handlerCss()
 	routes.LoadRoutes()
 	http.ListenAndServe(":8000", nil)
+}
+
+func handlerCss() {
+	folderSystem := http.FileServer(http.Dir("./templates/"))
+	pathRequest := http.StripPrefix("/templates/", folderSystem)
+	http.Handle("/templates/", pathRequest)
 }
