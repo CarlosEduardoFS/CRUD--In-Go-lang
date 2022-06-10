@@ -40,3 +40,13 @@ func FindAll() []models.Task {
 	defer db.Close()
 	return taskAll
 }
+
+func Delete(id string) {
+	db := db.Connect()
+	delete, err := db.Prepare("delete from task where id=$1")
+	if err != nil {
+		panic(err.Error())
+	}
+	delete.Exec(id)
+	defer db.Close()
+}

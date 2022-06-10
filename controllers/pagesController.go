@@ -12,3 +12,9 @@ func Index(w http.ResponseWriter, r *http.Request) {
 	taskAll := services.FindAll()
 	templates.ExecuteTemplate(w, "Index", taskAll)
 }
+
+func Delete(w http.ResponseWriter, r *http.Request) {
+	idtask := r.URL.Query().Get("id")
+	services.Delete(idtask)
+	http.Redirect(w, r, "/", 301)
+}
