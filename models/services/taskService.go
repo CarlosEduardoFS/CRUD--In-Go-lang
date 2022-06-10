@@ -50,3 +50,18 @@ func Delete(id string) {
 	delete.Exec(id)
 	defer db.Close()
 }
+
+func Save(title string, description string, done bool) {
+	db := db.Connect()
+
+	var query = "INSERT INTO task (title,description,done) VALUES ($1,$2,$3)"
+
+	save, err := db.Prepare(query)
+	if err != nil {
+		panic(err.Error())
+	}
+
+	save.Exec(title, description, done)
+	defer db.Close()
+
+}
