@@ -1,4 +1,4 @@
-{{define "Index"}}
+{{define "Edit"}}
 <!DOCTYPE html>
 <html>
 	<head>
@@ -24,26 +24,28 @@
                         Here we organize your tasks    
 					</span>
                   </nav>
-            </div>
-			<div class="conteinerIndex">
-                <div>
-                    <a href="/new" class="btn btn-primary mb-2">New</a>
-                </div>
-                {{range .}}
-                <div class="wloginIndex">
-                    <input type="checkbox" name="task" id="{{.Id}}" onclick="main('{{.Id}}')">
-                     <span for="{{.Id}}"  class="loginParaTitulo js-tilt">
-                                {{.Title}}
-                    </span>	
-                    <p><b>Description:</b>   </p>
-                    <p>     </p>
-                    <p>   {{.Description}}</p>
-                    <a class="btn btn-info" href="edit?id={{.Id}}">Edit</a>
-                </div>
-                {{end}}
-			</div>
+            </div>  
+            <div class="conteinerGeral">
+                <div class="wloginGeral">
+                    <form method="POST" action="update">
+                        <input type="hidden" name="id" value="{{.Id}}" >
+                        <div class="wInput">
+                            <input type="text" name="title" class="form-control" value="{{.Title}}" autocomplete="off">
+                            <span class="focoInput"></span>
+                        </div>
+                        <div class="wInput">
+                            <input type="text" name="description" class="form-control" value = "{{.Description}}" autocomplete="off">
+                            <span class="focoInput"></span>
+                        </div>
+                        <button type="submit" value="save" class="btn btn-success">Save</button>
+                        <a class="btn btn-info" href="/">Come back</a>
+                    </form>
+               </div>
+            </div>   
 		</div>
 	</body>
 </html>
 {{end}}
+
+
 

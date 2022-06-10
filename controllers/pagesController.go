@@ -4,6 +4,7 @@ import (
 	"A2DSW/models/services"
 	"html/template"
 	"net/http"
+	"strconv"
 )
 
 var templates = template.Must(template.ParseGlob("templates/*.html"))
@@ -32,5 +33,25 @@ func Insert(w http.ResponseWriter, r *http.Request) {
 		services.Save(title, description, done)
 	}
 
+	http.Redirect(w, r, "/", 301)
+}
+
+func Edit(w http.ResponseWriter, r *http.Request) {
+	id := r.URL.Query().Get("id")
+	task := services.Edit(id)
+	templates.ExecuteTemplate(w, "Edit", task)
+}
+func Update(w http.ResponseWriter, r *http.Request) {
+	id := r.FormValue("id")
+	title := r.FormValue("title")
+	description := r.FormValue("description")
+	done := false
+
+	idConvert, err := strconv.Atoi(id)
+	if err != nil {
+		panic(err.Error())
+	}
+
+	services.Update(idConvert, title, description, done)
 	http.Redirect(w, r, "/", 301)
 }

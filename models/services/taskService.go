@@ -65,3 +65,45 @@ func Save(title string, description string, done bool) {
 	defer db.Close()
 
 }
+
+func Edit(id string) models.Task {
+	db := db.Connect()
+
+	task, err := db.Query("select * from task where id=$1", id)
+	if err != nil {
+		panic(err.Error())
+	}
+
+	taskUpdate := models.Task{}
+
+	for task.Next() {
+		var id int
+		var title, description string
+		var done bool
+
+		err := task.Scan(&id, &title, &description, &done)
+		if err != nil {
+			panic(err.Error())
+		}
+
+		taskUpdate.Id = id
+		taskUpdate.Title = title
+		taskUpdate.Description = description
+		taskUpdate.Done = done
+	}
+	defer db.Close()
+	return taskUpdate
+
+}
+
+func Update(id int, title, description string, done bool) {
+	db := db.Connect()
+
+	updateDb, err := db.Prepare("update task set title=$1, description=$2, done=$3 where id=$4")
+	if err != nil {
+		panic(err.Error())
+	}
+	updateDb.Exec(title, description, done, id)
+	defer db.Close()
+
+}
