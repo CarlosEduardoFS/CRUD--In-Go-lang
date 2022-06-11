@@ -2,5 +2,14 @@
 
 Aplicativo de listas de tarefas simples utilizando GO language, postgresql, html, css e Javascript; aplicando arquitetura mvc e o desenvolvimento em camadas.
 
-####Home
+#### Home
 ![](/readme/home.png)
+
+#### New
+![](/readme/new-task.png)
+
+#### Edit
+![](/readme/edit.png)
+
+### Ao clicar na imagem você será redirecionado para um video no youtube que mostrará o projeto funcionando
+![](https://youtu.be/wPILSdPOxnc)
