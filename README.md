@@ -12,4 +12,4 @@ Aplicativo de listas de tarefas simples utilizando GO language, postgresql, html
 ![](/readme/edit.png)
 
 ### Ao clicar na imagem você será redirecionado para um video no youtube que mostrará o projeto funcionando
-[!](https://youtu.be/wPILSdPOxnc)
+[![images](https://img.youtube.com/vi/wPILSdPOxnc/default.jpg)](https://youtu.be/wPILSdPOxnc)
